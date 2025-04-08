@@ -1,0 +1,163 @@
+.footer {
+  background-color: #1e293b;
+  color: white;
+  padding: 4rem 0 2rem;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.footer.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.footerContent {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 0.5fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.footerLogo {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--accent-color);
+}
+
+.tagline {
+  color: #94a3b8;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 4rem;
+}
+
+.linksColumn h4 {
+  font-size: 1.1rem;
+  margin-bottom: 1.25rem;
+  color: white;
+  position: relative;
+  display: inline-block;
+}
+
+.linksColumn h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 30px;
+  height: 3px;
+  background: var(--accent-color);
+}
+
+.linksColumn ul {
+  list-style: none;
+  padding: 0;
+}
+
+.linksColumn li {
+  margin-bottom: 0.75rem;
+}
+
+.linksColumn a {
+  color: #94a3b8;
+  transition: color 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.linksColumn a:hover {
+  color: white;
+}
+
+.scrollTop {
+  width: 40px;
+  height: 40px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  align-self: flex-start;
+  justify-self: flex-end;
+}
+
+.scrollTop:hover {
+  background: var(--accent-hover);
+  transform: translateY(-5px);
+}
+
+.footerBottom {
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 992px) {
+  .footerContent {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .footerLogo {
+    grid-column: 1 / -1;
+  }
+  
+  .scrollTop {
+    grid-row: 1;
+    grid-column: 2;
+    justify-self: flex-end;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 3rem 1.5rem 2rem;
+  }
+  
+  .footerContent {
+    gap: 1.5rem;
+  }
+  
+  .footerLinks {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footerContent {
+    grid-template-columns: 1fr;
+  }
+  
+  .footerLinks {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .scrollTop {
+    grid-row: 1;
+    grid-column: 1;
+    justify-self: flex-end;
+  }
+  
+  .footerBottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+} 

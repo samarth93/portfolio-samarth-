@@ -1,0 +1,68 @@
+Samarth Pal
+
+9358145741 • palsamarth9@gmail.com •linkedin.com/in/samarth-pal-9701ba235/ • github.com/samarth93
+
+EDUCATION
+SRM University | Sonipat, Haryana
+October 2021 - Present
+Computer Science and Engineering | Current SGPA - 8.1 | B.Tech
+
+TECHNICAL SKILLS
+●​Networking: VPC architecture, route tables, security groups, peering
+●​CI/CD: Jenkins, GitHub Actions
+●​Infrastructure as Code: Ansible, Terraform, AWS CloudFormation, AWS CDK
+●​Cloud Platforms: AWS (EC2, S3, Auto Scaling, CloudFormation, CDK, Lambda, EKS, VPC, CloudWatch)
+●​Containerization & Orchestration: Docker, Kubernetes, Helm
+●​Programming Languages: Java, Python, JavaScript, Golang
+●​Backend Development: Spring Boot
+●​Frameworks: Spring Boot, React, FastAPI
+●​Databases: MySQL, MongoDB
+
+PROJECTS
+VPC Modelling with Flow LogsNextWork | AWS VPC, EC2, CloudWatch, CloudTrail, Auto-Scaling Groups
+●​
+●
+September 2024
+Designed a multi-stage VPC architecture with 99.9% uptime, ensuring high availability during traffic surges.
+Automated scaling using AWS CloudWatch and auto-scaling groups, reducing latency by 25% during peak loads.
+●​Implemented intelligent routing to redirect users to the nearest VPC, improving response time by 15%.
+●​Optimized AWS resource allocation through reserved instances and spot pricing, lowering monthly infrastructure costs by 18%.
+VideoConnect | Tech Stack: Spring Boot, JavaScript, Java, HTML, CSS, Ziggeo Cloud SDK
+●​
+February 2024
+Developed a video conferencing app supporting 50+ concurrent users with real-time streaming using Ziggeo SDK.
+●​Integrated JWT-based authentication and session management, reducing unauthorized access by 30%.
+●​Optimized bandwidth usage by 20% through dynamic resolution adjustment based on network conditions.
+VideoSearchAI | Tech Stack: CLIP, PIL, PyTorch, SuperDuperDB, MongoDB
+●​
+May 2023
+Built an ML model using PyTorch and CLIP to enable text-to-video search with 90% accuracy.
+●​Indexed 10,000+ video segments using SuperDuperDB, cutting retrieval time by 40%.
+●​Designed a modular architecture to allow easy integration of new video datasets, improving scalability for future iterations.
+EXPERIENCE
+SourceBow Technologies | Developer intern
+●​
+Designed and implemented caching mechanisms to enhance application responsiveness.
+July 2024 - August 2024
+●​Developed scalable e-commerce websites using Spring Boot and optimised database performance by 20%.
+●​Collaborated with cross-functional teams to deliver high-performance solutions.
+●​Improving checkout efficiency and reducing latency by 5% during peak traffic.
+
+Amazon Web Services | Cloud captain
+Conducted 15+ workshops on AWS services for 300+ students, boosting cloud adoption by 50%.
+February 2024 - Present
+Deployed serverless applications using Lambda and S3, reducing infrastructure costs by 25%.
+●​Optimized data visualization dashboards in AWS QuickSight, improving report generation speed by 35%.
+●​Worked with AmazonChime to enable real-time communication with latency optimized to under 50 ms.
+
+Centre for Innovation Incubation and Entrepreneurship | Core Member
+August 2021 - Present
+●​Led development of an autonomous drone with LiDAR-based obstacle avoidance (85% accuracy).
+●​Autonomous Drone: Developed an autonomous drone with advanced navigation and obstacle avoidance capabilities.
+●​Built a student LMS using React and Spring Boot, adopted by 500+ users for academic management.
+●​Inventory Management System: Implemented a system to efficiently manage and track inventory using modern technologies.
+●​AI-Based Attendance Calculator System: Developed an AI-powered system to automate and optimise attendance tracking.
+
+Certification
+●​ AWS Certified Cloud Practitioner | Validation Code: 8009762846cd4d2ab16654ce5a04fedf| Issued: 2024
+●​ Accenture Developer Job Simulation (Forage) | Completed: 2024

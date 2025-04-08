@@ -1,0 +1,231 @@
+.experience {
+  background-color: var(--background-light);
+  padding: var(--section-padding);
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease, background-color 0.3s ease;
+}
+
+:global(.dark-mode) .experience {
+  background-color: var(--background-dark);
+}
+
+.experience.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sectionTitle {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+  left: 70px;
+  margin-left: -2px;
+  border-radius: 2px;
+}
+
+.experienceItem {
+  position: relative;
+  margin-bottom: 4rem;
+  padding-left: 80px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.experienceItem:last-child {
+  margin-bottom: 0;
+}
+
+.experienceItem.animatedIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timelinePoint {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  border: 4px solid var(--primary-color);
+  left: 50px;
+  top: 0;
+  margin-left: -20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  color: var(--primary-color);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+:global(.dark-mode) .timelinePoint {
+  background: var(--background-dark);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.experienceItem:hover .timelinePoint {
+  transform: scale(1.1);
+  box-shadow: 0 5px 25px rgba(59, 130, 246, 0.4);
+}
+
+.timelineContent {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+:global(.dark-mode) .timelineContent {
+  background: #1e293b;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.experienceItem:hover .timelineContent {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+:global(.dark-mode) .experienceItem:hover .timelineContent {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.timelineHeader {
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding-bottom: 1.25rem;
+}
+
+:global(.dark-mode) .timelineHeader {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.position {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.company {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.period {
+  color: var(--accent-color);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.timelineBody p {
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+}
+
+.keyAchievements h4 {
+  font-size: 1rem;
+  color: var(--primary-color);
+  margin-bottom: 0.75rem;
+}
+
+.keyAchievements ul {
+  padding-left: 1.5rem;
+  margin-bottom: 0;
+}
+
+.keyAchievements li {
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.keyAchievements li::before {
+  content: '→';
+  position: absolute;
+  left: -1.2rem;
+  color: var(--accent-color);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 30px;
+  }
+  
+  .experienceItem {
+    padding-left: 60px;
+  }
+  
+  .timelinePoint {
+    width: 35px;
+    height: 35px;
+    left: 30px;
+    margin-left: -17.5px;
+  }
+  
+  .timelinePoint svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .sectionTitle {
+    margin-bottom: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .experience {
+    padding: 4rem 1rem;
+  }
+  
+  .timeline {
+    padding: 0 10px;
+  }
+  
+  .timeline::before {
+    left: 20px;
+  }
+  
+  .experienceItem {
+    padding-left: 40px;
+  }
+  
+  .timelinePoint {
+    width: 30px;
+    height: 30px;
+    left: 20px;
+    margin-left: -15px;
+  }
+  
+  .timelinePoint svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .timelineContent {
+    padding: 1.25rem;
+  }
+  
+  .position {
+    font-size: 1.2rem;
+  }
+} 

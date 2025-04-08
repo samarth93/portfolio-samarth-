@@ -1,0 +1,103 @@
+.themeToggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1100;
+}
+
+.toggleWrapper {
+  cursor: pointer;
+  width: 55px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  padding: 5px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: var(--transition);
+}
+
+.toggleWrapper:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.toggle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #f1f5f9;
+  border-radius: 30px;
+  transition: var(--transition);
+}
+
+.toggle.darkMode {
+  background-color: #0f172a;
+}
+
+.toggleThumb {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: var(--transition);
+}
+
+.toggle.darkMode .toggleThumb {
+  left: calc(100% - 24px);
+  background-color: #38bdf8;
+}
+
+.toggleIcon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f172a;
+  transition: var(--transition);
+}
+
+.toggle.darkMode .toggleIcon {
+  right: calc(100% - 36px);
+  color: #f1f5f9;
+}
+
+.toggle:not(.darkMode) .toggleIcon {
+  left: calc(100% - 36px);
+  color: #f1f5f9;
+}
+
+@media (max-width: 768px) {
+  .themeToggle {
+    top: 15px;
+    right: 15px;
+  }
+  
+  .toggleWrapper {
+    width: 45px;
+    height: 25px;
+  }
+  
+  .toggleThumb {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .toggle.darkMode .toggleThumb {
+    left: calc(100% - 20px);
+  }
+  
+  .toggleIcon svg {
+    width: 12px;
+    height: 12px;
+  }
+} 
