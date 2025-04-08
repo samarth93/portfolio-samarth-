@@ -29,14 +29,16 @@ const Hero: React.FC<HeroProps> = ({ name, title }) => {
       height: number;
       speed: number;
       color: string;
+      canvasWidth: number;
 
-      constructor(x: number, y: number, width: number, height: number, speed: number) {
+      constructor(x: number, y: number, width: number, height: number, speed: number, canvasWidth: number) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.speed = speed;
         this.color = 'rgba(255, 255, 255, 0.8)';
+        this.canvasWidth = canvasWidth;
       }
 
       draw() {
@@ -52,7 +54,7 @@ const Hero: React.FC<HeroProps> = ({ name, title }) => {
       }
 
       update() {
-        if (this.x > canvas.width + this.width) {
+        if (this.x > this.canvasWidth + this.width) {
           this.x = -this.width;
         }
         this.x += this.speed;
@@ -67,7 +69,7 @@ const Hero: React.FC<HeroProps> = ({ name, title }) => {
       const x = Math.random() * canvas.width;
       const y = Math.random() * (canvas.height / 2);
       const speed = Math.random() * 0.5 + 0.1;
-      clouds.push(new Cloud(x, y, size, size/2, speed));
+      clouds.push(new Cloud(x, y, size, size/2, speed, canvas.width));
     }
 
     // Animation
@@ -88,6 +90,11 @@ const Hero: React.FC<HeroProps> = ({ name, title }) => {
       if (!canvas) return;
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      
+      // Update cloud canvas widths
+      clouds.forEach(cloud => {
+        cloud.canvasWidth = canvas.width;
+      });
     };
 
     window.addEventListener('resize', handleResize);
