@@ -11,10 +11,35 @@ import Certifications from '../components/Certifications';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import ThemeToggle from '../components/ThemeToggle';
-import axios from 'axios';
+
+interface ProfileData {
+  name: string;
+  title: string;
+  email: string;
+  github: string;
+  linkedin: string;
+  skills: {
+    cloud: string[];
+    devops: string[];
+    programming: string[];
+    frameworks: string[];
+  };
+  projects: {
+    title: string;
+    description: string;
+    technologies: string;
+  }[];
+  experience: {
+    company: string;
+    position: string;
+    period: string;
+    description: string;
+  }[];
+  certifications: string[];
+}
 
 export default function HomePage() {
-  const [profileData, setProfileData] = useState<any>(null);
+  const [profileData, setProfileData] = useState<ProfileData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 

@@ -100,7 +100,7 @@ const Hero: React.FC<HeroProps> = ({ name, title }) => {
       <div className={styles.overlay}></div>
       <div className={styles.content}>
         <h1 className="animate-fade-in">
-          Hello, I'm <span className={styles.highlight}>{name}</span>
+          Hello, I&apos;m <span className={styles.highlight}>{name}</span>
         </h1>
         <h2 className="animate-slide-up">{title}</h2>
         <p className="animate-slide-up">

@@ -115,7 +115,7 @@ const Contact: React.FC<ContactProps> = ({ email, github, linkedin }) => {
             </div>
             
             <div className={styles.contactConnect}>
-              <h4>Let's Connect</h4>
+              <h4>Let&apos;s Connect</h4>
               <div className={styles.socialLinks}>
                 <a href={github} target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
                   <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none">
