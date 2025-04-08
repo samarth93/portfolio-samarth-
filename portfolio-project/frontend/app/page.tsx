@@ -109,8 +109,9 @@ export default function HomePage() {
     /* Commented out API fetch for now
     const fetchData = async () => {
       try {
-        const response = await axios.get('/api/profile');
-        setProfileData(response.data);
+        const response = await fetch('/api/profile');
+        const data = await response.json();
+        setProfileData(data);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching profile data:', error);
@@ -129,7 +130,7 @@ export default function HomePage() {
     document.body.classList.toggle('dark-mode');
   };
 
-  if (loading) {
+  if (loading || !profileData) {
     return (
       <div className="flex-center" style={{ height: '100vh' }}>
         <div className="loader"></div>
