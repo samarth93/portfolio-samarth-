@@ -1,53 +1,60 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import styles from '../styles/Navbar.module.css';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
 
-  useEffect(() => {
+  // Throttled scroll handler to improve performance
+  const throttledScrollHandler = useCallback(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-      
-      // Detect which section is in view
-      const sections = ['hero', 'about', 'skills', 'projects', 'experience', 'certifications', 'contact'];
-      
-      // Find the section that is currently most visible
-      let currentSection = 'hero';
-      let maxVisibility = 0;
-      
-      sections.forEach(sectionId => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-          const rect = section.getBoundingClientRect();
-          const sectionHeight = rect.height;
-          const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
-          const visibilityRatio = visibleHeight / sectionHeight;
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          // Update scroll state
+          setIsScrolled(window.scrollY > 50);
           
-          if (visibilityRatio > maxVisibility && visibilityRatio > 0.2) {
-            maxVisibility = visibilityRatio;
-            currentSection = sectionId;
+          // Simplified section detection - only check when scrolling stops
+          const sections = ['hero', 'about', 'skills', 'projects', 'experience', 'certifications', 'contact'];
+          let currentSection = 'hero';
+          
+          for (const sectionId of sections) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+              const rect = section.getBoundingClientRect();
+              if (rect.top <= 100 && rect.bottom >= 100) {
+                currentSection = sectionId;
+                break;
+              }
+            }
           }
-        }
-      });
-      
-      setActiveSection(currentSection);
+          
+          setActiveSection(currentSection);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    return handleScroll;
   }, []);
+
+  useEffect(() => {
+    const handleScroll = throttledScrollHandler();
+    
+    // Use passive listener for better performance
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [throttledScrollHandler]);
 
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
       setActiveSection(sectionId);
     }
   };
@@ -56,7 +63,7 @@ const Navbar = () => {
     <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
         <div className={styles.logo} onClick={() => scrollToSection('hero')}>
-          <span>S</span>amarth
+          Samarth
         </div>
         
         <ul className={styles.navItems}>

@@ -40,12 +40,11 @@ const About = () => {
         <div className={styles.content}>
           <div className={`${styles.profileImage} ${styles.animated}`}>
             <div className={styles.imageContainer}>
-              <div className={styles.imagePlaceholder}>
-                <svg viewBox="0 0 24 24" width="100" height="100" stroke="currentColor" strokeWidth="1" fill="none">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-              </div>
+              <img 
+                src="/images/profile.jpg" 
+                alt="Samarth Pal - Cloud Developer & DevOps Engineer"
+                className={styles.profileImg}
+              />
             </div>
             <div className={styles.cloudIconContainer}>
               <div className={`${styles.cloudIcon} ${styles.cloud1}`}>

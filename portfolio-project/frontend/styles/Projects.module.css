@@ -26,80 +26,42 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2.5rem;
-  perspective: 1000px;
 }
 
 .projectCard {
-  height: 400px;
+  height: auto;
+  min-height: 450px;
   border-radius: 15px;
   overflow: hidden;
   position: relative;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.5s ease;
-  transform-style: preserve-3d;
   opacity: 0;
   transform: translateY(30px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  background: linear-gradient(135deg, #e0f2fe, #bfdbfe);
+  color: var(--text-light);
 }
 
 :global(.dark-mode) .projectCard {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+  color: var(--text-dark);
 }
 
 .projectCard.animatedIn {
   opacity: 1;
-  transform: translateY(0) rotateY(0);
-}
-
-.projectCard:hover {
-  transform: translateY(-10px);
-}
-
-.projectCard.active {
-  transform: rotateY(180deg);
+  transform: translateY(0);
 }
 
 .projectContent {
   position: relative;
   width: 100%;
   height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-}
-
-.frontSide, .backSide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 2rem;
-}
-
-.frontSide {
-  background: linear-gradient(135deg, #e0f2fe, #bfdbfe);
-  color: var(--text-light);
-}
-
-:global(.dark-mode) .frontSide {
-  background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-  color: var(--text-dark);
-}
-
-.backSide {
-  background: linear-gradient(135deg, #dbeafe, #eff6ff);
-  color: var(--text-light);
-  transform: rotateY(180deg);
-  justify-content: flex-start;
-}
-
-:global(.dark-mode) .backSide {
-  background: linear-gradient(135deg, #1e40af, #1d4ed8);
-  color: var(--text-dark);
+  text-align: center;
 }
 
 .iconContainer {
@@ -113,7 +75,6 @@
   margin-bottom: 2rem;
   color: var(--primary-color);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 :global(.dark-mode) .iconContainer {
@@ -121,56 +82,26 @@
   color: white;
 }
 
-.projectCard:hover .iconContainer {
-  transform: scale(1.1);
-  background-color: rgba(255, 255, 255, 0.3);
-}
-
-.frontSide h3 {
+.projectContent h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  position: relative;
-  display: inline-block;
-}
-
-.frontSide h3::after {
-  content: '';
-  position: absolute;
-  left: 10%;
-  bottom: -8px;
-  width: 80%;
-  height: 3px;
-  background: var(--primary-color);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
-}
-
-.projectCard:hover .frontSide h3::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-.backSide h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
   color: var(--primary-color);
 }
 
-:global(.dark-mode) .backSide h3 {
+:global(.dark-mode) .projectContent h3 {
   color: white;
 }
 
 .projectDescription {
   margin-bottom: 1.5rem;
   line-height: 1.6;
-  text-align: left;
+  text-align: center;
 }
 
 .techStack {
   width: 100%;
   margin-bottom: 1.5rem;
-  text-align: left;
+  text-align: center;
 }
 
 .techStack h4 {
@@ -187,6 +118,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  justify-content: center;
 }
 
 .techTag {
@@ -221,12 +153,11 @@
   border-radius: 5px;
   font-size: 0.9rem;
   font-weight: 500;
-  transition: var(--transition);
+  transition: background-color 0.3s ease;
 }
 
 .projectLink:hover {
   background-color: var(--accent-hover);
-  transform: translateY(-3px);
 }
 
 @media (max-width: 992px) {
@@ -241,38 +172,12 @@
   }
   
   .projectCard {
-    height: 380px;
+    min-height: 400px;
   }
   
   .iconContainer {
     width: 100px;
     height: 100px;
-  }
-  
-  .projectCard.active {
-    transform: none;
-  }
-  
-  .frontSide {
-    position: relative;
-    transform: rotateY(0);
-  }
-  
-  .backSide {
-    position: absolute;
-    opacity: 0;
-    transform: rotateY(0);
-    pointer-events: none;
-  }
-  
-  .projectCard.active .frontSide {
-    opacity: 0;
-    pointer-events: none;
-  }
-  
-  .projectCard.active .backSide {
-    opacity: 1;
-    pointer-events: auto;
   }
 }
 

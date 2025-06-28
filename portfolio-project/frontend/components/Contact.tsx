@@ -93,7 +93,7 @@ const Contact: React.FC<ContactProps> = ({ email, github, linkedin }) => {
               <div className={styles.infoDetails}>
                 <span className={styles.infoLabel}>GitHub</span>
                 <a href={github} target="_blank" rel="noopener noreferrer" className={styles.infoValue}>
-                  {github.replace('https://github.com/', '')}
+                  {github.replace(/https?:\/\/(www\.)?github\.com\//, '')}
                 </a>
               </div>
             </div>
@@ -109,7 +109,7 @@ const Contact: React.FC<ContactProps> = ({ email, github, linkedin }) => {
               <div className={styles.infoDetails}>
                 <span className={styles.infoLabel}>LinkedIn</span>
                 <a href={linkedin} target="_blank" rel="noopener noreferrer" className={styles.infoValue}>
-                  {linkedin.replace('https://linkedin.com/in/', '')}
+                  {linkedin.replace(/https?:\/\/(www\.)?linkedin\.com\/in\//, '')}
                 </a>
               </div>
             </div>

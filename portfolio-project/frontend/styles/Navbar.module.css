@@ -10,18 +10,18 @@
 }
 
 .scrolled {
-  background-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
   padding: 0.8rem 0;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 :global(.dark-mode) .scrolled {
-  background-color: rgba(15, 23, 42, 0.9);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: rgba(15, 23, 42, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .container {
@@ -40,42 +40,35 @@
   position: relative;
   transition: all 0.3s ease;
   letter-spacing: -0.5px;
-  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4, #10b981);
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: logoGradient 4s ease infinite;
+  filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
+}
+
+@keyframes logoGradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 :global(.dark-mode) .logo {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  filter: drop-shadow(0 2px 8px rgba(59, 130, 246, 0.5));
 }
 
 .logo:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.05);
+  filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.4));
 }
 
-.logo span {
-  position: relative;
-  display: inline-block;
-  font-weight: 900;
-}
-
-.logo span::after {
-  content: '';
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--accent-color);
-  bottom: 0;
-  right: -8px;
-  opacity: 0.8;
-  box-shadow: 0 0 10px var(--accent-color);
-}
-
-:global(.dark-mode) .logo span::after {
-  box-shadow: 0 0 15px var(--accent-color);
+:global(.dark-mode) .logo:hover {
+  filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.6));
 }
 
 .navItems {
@@ -86,28 +79,46 @@
 
 .navItems li {
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
   position: relative;
   transition: all 0.3s ease;
   padding: 0.5rem 0;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.scrolled .navItems li {
+  color: var(--text-light);
+  text-shadow: none;
+}
+
+:global(.dark-mode) .scrolled .navItems li {
+  color: var(--text-dark);
 }
 
 .navItems li:hover {
-  color: var(--primary-color);
+  color: #38bdf8;
   transform: translateY(-2px);
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+
+.scrolled .navItems li:hover {
+  color: var(--primary-color);
+  text-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
 }
 
 .navItems li::after {
   content: '';
   position: absolute;
   width: 0;
-  height: 2px;
+  height: 3px;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  background-color: var(--primary-color);
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
   transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border-radius: 2px;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
 }
 
 .navItems li:hover::after {
@@ -115,11 +126,18 @@
 }
 
 .activeNavItem {
-  color: var(--primary-color);
+  color: #38bdf8 !important;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.6) !important;
+}
+
+.scrolled .activeNavItem {
+  color: var(--primary-color) !important;
+  text-shadow: 0 2px 8px rgba(59, 130, 246, 0.4) !important;
 }
 
 .activeNavItem::after {
-  width: 70% !important;
+  width: 80% !important;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6) !important;
 }
 
 /* Mobile menu styles - hidden since we're removing the hamburger */
@@ -141,6 +159,7 @@
   
   .navItems li {
     font-size: 0.9rem;
+    font-weight: 500;
   }
   
   .logo {

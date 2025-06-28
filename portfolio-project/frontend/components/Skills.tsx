@@ -21,18 +21,13 @@ const Skills: React.FC<SkillsProps> = ({ skills }) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add(styles.visible);
-            
-            // Animate progress bars when section becomes visible
-            const progressBars = document.querySelectorAll(`.${styles.progressBar}`);
-            progressBars.forEach((bar, index) => {
-              setTimeout(() => {
-                (bar as HTMLElement).style.width = (bar as HTMLElement).dataset.progress || '0%';
-              }, 100 * index);
-            });
           }
         });
       },
-      { threshold: 0.1 }
+      { 
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px' // Only trigger when section is well into view
+      }
     );
 
     const section = sectionRef.current;
@@ -44,61 +39,6 @@ const Skills: React.FC<SkillsProps> = ({ skills }) => {
       if (section) {
         observer.unobserve(section);
       }
-    };
-  }, []);
-
-  // DevOps pipeline animation
-  useEffect(() => {
-    const pipelineCircles = document.querySelectorAll(`.${styles.pipelineCircle}`);
-    let currentIndex = 0;
-    let isAnimating = true;
-
-    const animatePipeline = () => {
-      if (!isAnimating) return;
-      
-      pipelineCircles.forEach((circle, index) => {
-        if (index === currentIndex) {
-          circle.classList.add(styles.active);
-        } else {
-          circle.classList.remove(styles.active);
-        }
-      });
-
-      currentIndex = (currentIndex + 1) % pipelineCircles.length;
-    };
-
-    // Start the animation when the section is visible
-    const interval = setInterval(animatePipeline, 2000);
-
-    // Allow manual interaction with the pipeline steps
-    pipelineCircles.forEach((circle, index) => {
-      circle.addEventListener('mouseenter', () => {
-        // Pause automatic animation temporarily when user interacts
-        isAnimating = false;
-        
-        // Clear active class from all circles
-        pipelineCircles.forEach(c => c.classList.remove(styles.active));
-        
-        // Add active class to hovered circle
-        circle.classList.add(styles.active);
-      });
-      
-      circle.addEventListener('mouseleave', () => {
-        // Resume animation after a delay when user stops interacting
-        setTimeout(() => {
-          currentIndex = index;
-          isAnimating = true;
-        }, 1000);
-      });
-    });
-
-    return () => {
-      clearInterval(interval);
-      // Clean up event listeners
-      pipelineCircles.forEach((circle) => {
-        circle.removeEventListener('mouseenter', () => {});
-        circle.removeEventListener('mouseleave', () => {});
-      });
     };
   }, []);
 
@@ -185,7 +125,7 @@ const Skills: React.FC<SkillsProps> = ({ skills }) => {
           <h3>DevOps Pipeline Workflow</h3>
           <div className={styles.pipeline}>
             <div className={styles.pipelineStep}>
-              <div className={`${styles.pipelineCircle} ${styles.active}`}>
+              <div className={`${styles.pipelineCircle}`}>
                 <span>1</span>
               </div>
               <div className={styles.pipelineLabel}>Code</div>

@@ -28,6 +28,7 @@ interface ProfileData {
     title: string;
     description: string;
     technologies: string;
+    githubLink?: string;
   }[];
   experience: {
     company: string;
@@ -35,7 +36,12 @@ interface ProfileData {
     period: string;
     description: string;
   }[];
-  certifications: string[];
+  certifications: {
+    title: string;
+    issuer: string;
+    issuedDate: string;
+    link?: string;
+  }[];
 }
 
 export default function HomePage() {
@@ -48,9 +54,9 @@ export default function HomePage() {
     setProfileData({
       name: 'Samarth',
       title: 'Cloud Developer & DevOps Engineer',
-      email: 'samarth@example.com',
-      github: 'https://github.com/samarth',
-      linkedin: 'https://linkedin.com/in/samarth',
+      email: 'palsamarth9@gmail.com',
+      github: 'https://github.com/samarth93',
+      linkedin: 'https://www.linkedin.com/in/samarth-pal-9701ba235/',
       skills: {
         cloud: [
           'EC2', 'S3', 'Auto Scaling', 'CloudFormation', 'CDK', 
@@ -61,6 +67,24 @@ export default function HomePage() {
         frameworks: ['Spring Boot', 'React', 'Next.js', 'Express']
       },
       projects: [
+        {
+          title: 'CI/CD Pipeline on AWS',
+          description: 'Designed and implemented a robust CI/CD pipeline using AWS services to automate the building, testing, and deployment of applications from GitHub to a live website hosted on EC2.',
+          technologies: 'AWS CodeCommit, AWS CodeArtifact, AWS CodeBuild, AWS CodeDeploy, AWS CodePipeline, Amazon EC2, Amazon S3, AWS CloudFormation',
+          githubLink: 'https://github.com/samarth93/CI-CD-AWS'
+        },
+        {
+          title: 'Three-Tier Web Application Architecture on AWS',
+          description: 'Built a secure, serverless three-tier web application with user authentication, static content delivery, API-driven backend, and dynamic data storage.',
+          technologies: 'Amazon Cognito, Amazon CloudFront, Amazon S3, Amazon API Gateway, AWS Lambda, Amazon DynamoDB',
+          githubLink: 'https://github.com/samarth93/Three-Tier-Architecture'
+        },
+        {
+          title: 'InsurTech',
+          description: 'Developed a custom insurance application that enables users to build personalized insurance policies by combining features from existing plans.',
+          technologies: 'Node.js, MongoDB, Java',
+          githubLink: 'https://github.com/samarth93/insurance-application-'
+        },
         {
           title: 'VPC Modelling with Flow Logs',
           description: 'Developed a solution for monitoring and analyzing VPC flow logs to enhance security and network optimization.',
@@ -98,10 +122,76 @@ export default function HomePage() {
         }
       ],
       certifications: [
-        'AWS Certified Solutions Architect - Professional',
-        'AWS Certified DevOps Engineer - Professional',
-        'Certified Kubernetes Administrator (CKA)',
-        'HashiCorp Certified: Terraform Associate'
+        {
+          title: 'AWS Certified Solutions Architect - Professional',
+          issuer: 'Amazon Web Services',
+          issuedDate: 'Issued: October 2022 · Expires: October 2025'
+        },
+        {
+          title: 'AWS Certified DevOps Engineer - Professional',
+          issuer: 'Amazon Web Services',
+          issuedDate: 'Issued: July 2022 · Expires: July 2025'
+        },
+        {
+          title: 'Certified Kubernetes Administrator (CKA)',
+          issuer: 'Cloud Native Computing Foundation',
+          issuedDate: 'Issued: March 2023 · Expires: March 2026'
+        },
+        {
+          title: 'HashiCorp Certified: Terraform Associate',
+          issuer: 'HashiCorp',
+          issuedDate: 'Issued: January 2023 · Expires: January 2025'
+        },
+        {
+          title: 'Certificate of Participation – Industry-Academia Collaboration with MSMEs',
+          issuer: 'BOSCH',
+          issuedDate: 'Issued: February 28, 2023 · Lifetime'
+        },
+        {
+          title: 'Certificate of Appreciation – RC Car Bootcamp (36 hours)',
+          issuer: 'Centre for Innovation, Incubation, and Entrepreneurship (CIIE)',
+          issuedDate: 'Lifetime'
+        },
+        {
+          title: 'Certificate of Appreciation – Organizer, 36-Hour Hackathon',
+          issuer: 'Centre for Innovation, Incubation, and Entrepreneurship (CIIE)',
+          issuedDate: 'Lifetime'
+        },
+        {
+          title: 'Certificate of Completion – Web Development Workshop',
+          issuer: 'Centre for Innovation, Incubation, and Entrepreneurship (CIIE)',
+          issuedDate: 'Lifetime'
+        },
+        {
+          title: 'Certificate of Participation – SRM Builds 1.0',
+          issuer: 'Centre for Innovation, Incubation, and Entrepreneurship (CIIE)',
+          issuedDate: 'No expiration'
+        },
+        {
+          title: 'Certificate of Appreciation – Arduino Training, IoT Training, RC Car & Drone Workshop',
+          issuer: 'Centre for Innovation, Incubation, and Entrepreneurship (CIIE)',
+          issuedDate: 'Lifetime'
+        },
+        {
+          title: 'Certificate of Completion – Arduino Training and RC Car Workshop',
+          issuer: 'Centre for Innovation, Incubation, and Entrepreneurship (CIIE)',
+          issuedDate: 'No expiration'
+        },
+        {
+          title: 'Certificate of Participation – Debate "Jagaana Desh Hai Apna"',
+          issuer: 'SRM University, Department of Law',
+          issuedDate: 'Issued: February 14, 2023 · Lifetime'
+        },
+        {
+          title: 'Certificate of Participation – Industrial Collaboration with MSMEs & SCoE',
+          issuer: 'BOSCH',
+          issuedDate: 'Issued: October 26, 2023 · Lifetime'
+        },
+        {
+          title: 'SRM Builds x FinTech 5.0 – Winner',
+          issuer: 'Centre for Innovation, Incubation, and Entrepreneurship (CIIE)',
+          issuedDate: 'Lifetime'
+        }
       ]
     });
     setLoading(false);
