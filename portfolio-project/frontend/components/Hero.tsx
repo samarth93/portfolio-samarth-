@@ -38,8 +38,8 @@ const Hero: React.FC<HeroProps> = ({ name, title }) => {
       pulsePhase: number;
 
       constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+        this.x = Math.random() * canvas!.width;
+        this.y = Math.random() * canvas!.height;
         this.size = Math.random() * 6 + 2;
         this.speedX = (Math.random() - 0.5) * 0.8;
         this.speedY = (Math.random() - 0.5) * 0.8;
@@ -127,10 +127,10 @@ const Hero: React.FC<HeroProps> = ({ name, title }) => {
         this.rotation += this.rotationSpeed;
 
         // Smooth wrap around screen with fade effect
-        if (this.x > canvas.width + this.size) this.x = -this.size;
-        if (this.x < -this.size) this.x = canvas.width + this.size;
-        if (this.y > canvas.height + this.size) this.y = -this.size;
-        if (this.y < -this.size) this.y = canvas.height + this.size;
+        if (this.x > canvas!.width + this.size) this.x = -this.size;
+        if (this.x < -this.size) this.x = canvas!.width + this.size;
+        if (this.y > canvas!.height + this.size) this.y = -this.size;
+        if (this.y < -this.size) this.y = canvas!.height + this.size;
 
         this.draw();
       }
@@ -172,7 +172,7 @@ const Hero: React.FC<HeroProps> = ({ name, title }) => {
     // Animation
     const animate = () => {
       if (!ctx) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas!.width, canvas!.height);
       
       // Draw connection lines first (behind particles)
       Connection.draw(particles);
