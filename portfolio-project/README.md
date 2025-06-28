@@ -1,6 +1,6 @@
 # Professional Portfolio Website
 
-A modern, interactive personal portfolio website featuring a Next.js frontend and Spring Boot backend.
+A modern, interactive personal portfolio website built with Next.js.
 
 ## Features
 
@@ -11,6 +11,7 @@ A modern, interactive personal portfolio website featuring a Next.js frontend an
 - Interactive hover effects and smooth transitions
 - Light/dark mode toggle
 - All content on a single page with smooth scroll navigation
+- Static data (no backend required)
 
 ## Project Structure
 
@@ -26,33 +27,11 @@ frontend/
 └── public/         # Static assets
 ```
 
-### Backend (Spring Boot)
-
-The backend is a minimal Spring Boot REST API implementation.
-
-```
-backend/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/
-│   │   │       └── portfolio/
-│   │   │           └── backend/
-│   │   │               ├── BackendApplication.java
-│   │   │               └── controller/
-│   │   │                   └── PortfolioController.java
-│   │   └── resources/
-│   │       └── application.properties
-└── pom.xml
-```
-
 ## Setup and Installation
 
 ### Prerequisites
 
 - Node.js (v18+)
-- Java JDK 17+
-- Maven
 
 ### Frontend Setup
 
@@ -71,46 +50,31 @@ backend/
    npm run dev
    ```
 
-4. The frontend should now be accessible at [http://localhost:3000](http://localhost:3000)
-
-### Backend Setup
-
-1. Navigate to the backend directory:
-   ```
-   cd portfolio-project/backend
-   ```
-
-2. Build the application:
-   ```
-   mvn clean install
-   ```
-
-3. Run the application:
-   ```
-   mvn spring-boot:run
-   ```
-
-4. The backend API should now be accessible at [http://localhost:8080](http://localhost:8080)
-
-## API Endpoints
-
-- `GET /api/profile` - Returns profile data including personal information, skills, projects, experience, and certifications.
+4. The application should now be accessible at [http://localhost:3000](http://localhost:3000)
 
 ## Customization
 
 To personalize this portfolio:
 
-1. Update the profile data in `backend/src/main/java/com/portfolio/backend/controller/PortfolioController.java` with your own information.
+1. Update the profile data in `frontend/app/page.tsx` with your own information in the `setProfileData` function.
 
 2. Replace placeholder content in various components under `frontend/components/` with your own details.
 
 3. Customize colors and themes by modifying variables in `frontend/app/globals.css`.
 
+4. Add your own images to `frontend/public/images/`.
+
 ## Deployment
 
-### Frontend Deployment
+The Next.js application can be deployed to platforms like Vercel, Netlify, or any hosting provider supporting Node.js applications.
 
-The Next.js frontend can be deployed to platforms like Vercel, Netlify, or any hosting provider supporting Node.js applications.
+### Option 1: Vercel (Recommended)
+
+1. Push your code to a Git repository (GitHub, GitLab, etc.)
+2. Connect your repository to Vercel
+3. Vercel will automatically build and deploy your application
+
+### Option 2: Static Export
 
 1. Build the production version:
    ```
@@ -118,19 +82,18 @@ The Next.js frontend can be deployed to platforms like Vercel, Netlify, or any h
    npm run build
    ```
 
-2. Deploy the built files from the `.next` directory.
+2. Deploy the built files from the `.next` directory to any static hosting service.
 
-### Backend Deployment
+### Option 3: Manual Deployment
 
-The Spring Boot backend can be deployed to platforms like Heroku, AWS Elastic Beanstalk, or any Java hosting service.
-
-1. Build the JAR file:
+1. Build the production version:
    ```
-   cd backend
-   mvn clean package
+   cd frontend
+   npm run build
+   npm start
    ```
 
-2. Deploy the JAR file from the `target` directory.
+2. Deploy to any Node.js hosting service.
 
 ## License
 

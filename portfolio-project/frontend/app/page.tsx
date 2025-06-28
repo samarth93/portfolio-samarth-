@@ -50,7 +50,7 @@ export default function HomePage() {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   useEffect(() => {
-    // Directly use mock data for now instead of API
+    // Set profile data directly (no backend required)
     setProfileData({
       name: 'Samarth',
       title: 'Cloud Developer & DevOps Engineer',
@@ -195,23 +195,6 @@ export default function HomePage() {
       ]
     });
     setLoading(false);
-    
-    /* Commented out API fetch for now
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/profile');
-        const data = await response.json();
-        setProfileData(data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching profile data:', error);
-        // Mock data for development until backend is complete
-        // ...mock data here...
-        setLoading(false);
-      }
-    };
-    fetchData();
-    */
   }, []);
 
   // Toggle dark mode
