@@ -1,0 +1,898 @@
+.journey {
+  padding: 8rem 0;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #1a1a2e 75%, #0f0f23 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.journey::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.sectionTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #10b981);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+.sectionSubtitle {
+  font-size: 1.2rem;
+  color: #94a3b8;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.content {
+  display: grid;
+  gap: 6rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Timeline Styles */
+.timelineContainer {
+  position: relative;
+}
+
+.timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #3b82f6, #8b5cf6, #10b981, #f59e0b);
+  transform: translateX(-50%);
+}
+
+.timelineItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: var(--delay);
+}
+
+.timelineItem:nth-child(odd) {
+  flex-direction: row;
+}
+
+.timelineItem:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timelineItem.active .timelineIcon {
+  transform: scale(1.2);
+  box-shadow: 0 0 30px var(--accent-color);
+}
+
+.timelineIcon {
+  width: 80px;
+  height: 80px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.icon {
+  font-size: 2rem;
+}
+
+.timelineContent {
+  flex: 1;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  margin: 0 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.timelineContent::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 12px solid transparent;
+  transform: translateY(-50%);
+}
+
+.timelineItem:nth-child(odd) .timelineContent::before {
+  left: -24px;
+  border-right-color: rgba(255, 255, 255, 0.1);
+}
+
+.timelineItem:nth-child(even) .timelineContent::before {
+  right: -24px;
+  border-left-color: rgba(255, 255, 255, 0.1);
+}
+
+.timelineContent:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+}
+
+.timelineYear {
+  font-size: 0.9rem;
+  color: var(--accent-color);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.timelineTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #e2e8f0;
+}
+
+.timelineRole {
+  font-size: 1rem;
+  color: #94a3b8;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.timelineDescription {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  text-align: justify;
+}
+
+/* Professional Experience Styles */
+.experienceContainer {
+  margin: 4rem 0;
+}
+
+.experienceContainer h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.experienceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.experienceCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: var(--delay);
+}
+
+.experienceCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.experienceCard:hover::before {
+  opacity: 1;
+}
+
+.experienceCard:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-color: var(--accent-color);
+}
+
+.experienceHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.experienceIcon {
+  width: 60px;
+  height: 60px;
+  background: var(--accent-color);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.experienceCard:hover .experienceIcon {
+  transform: scale(1.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.experienceInfo {
+  flex: 1;
+}
+
+.experienceTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin-bottom: 0.25rem;
+}
+
+.experienceCompany {
+  font-size: 1rem;
+  color: var(--accent-color);
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.experiencePeriod {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.experienceDescription {
+  margin-bottom: 1.5rem;
+}
+
+.experienceDescription p {
+  color: #cbd5e1;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  text-align: justify;
+}
+
+.experienceAchievements {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.experienceAchievements h6 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.experienceAchievements h6::before {
+  content: '🏆';
+  font-size: 1.1rem;
+}
+
+.experienceAchievements ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.experienceAchievements li {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+  position: relative;
+  padding-left: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.experienceAchievements li::before {
+  content: '▶';
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+  font-size: 0.8rem;
+}
+
+.experienceAchievements li:hover {
+  color: #e2e8f0;
+  transform: translateX(5px);
+}
+
+.experienceAchievements li:last-child {
+  margin-bottom: 0;
+}
+
+/* Philosophy Styles */
+.philosophyContainer {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 2rem;
+  padding: 3rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.philosophy h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #e2e8f0;
+}
+
+.philosophyContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.philosophyItem {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.philosophyItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.philosophyIcon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.philosophyItem h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #e2e8f0;
+}
+
+.philosophyItem p {
+  color: #cbd5e1;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* Achievements Styles */
+.achievementsContainer {
+  text-align: center;
+}
+
+.achievementsContainer h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
+  color: #e2e8f0;
+}
+
+.achievements {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.achievementCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: var(--delay);
+}
+
+.achievementCard:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+}
+
+.achievementMetric {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #3b82f6;
+  margin-bottom: 0.5rem;
+}
+
+.achievementLabel {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 0.5rem;
+}
+
+.achievementDescription {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+/* Call to Action Styles */
+.cta {
+  text-align: center;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+  border-radius: 2rem;
+  padding: 4rem 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.cta h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #e2e8f0;
+}
+
+.cta p {
+  font-size: 1.2rem;
+  color: #cbd5e1;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButton {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .timeline::before {
+    left: 30px;
+  }
+  
+  .timelineItem {
+    flex-direction: row !important;
+    margin-left: 60px;
+  }
+  
+  .timelineItem:nth-child(even) {
+    flex-direction: row !important;
+  }
+  
+  .timelineContent::before {
+    left: -24px !important;
+    border-right-color: rgba(255, 255, 255, 0.1) !important;
+    border-left-color: transparent !important;
+  }
+  
+  .timelineIcon {
+    position: absolute;
+    left: -90px;
+    width: 60px;
+    height: 60px;
+  }
+  
+  .icon {
+    font-size: 1.5rem;
+  }
+
+  .experienceGrid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .experienceCard {
+    padding: 1.5rem;
+  }
+
+  .experienceContainer h3 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .journey {
+    padding: 4rem 0;
+  }
+  
+  .header {
+    margin-bottom: 3rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2.5rem;
+  }
+  
+  .sectionSubtitle {
+    font-size: 1rem;
+  }
+  
+  .content {
+    gap: 3rem;
+  }
+  
+  .timelineItem {
+    margin-bottom: 2rem;
+    margin-left: 30px;
+  }
+  
+  .timelineIcon {
+    left: -60px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .icon {
+    font-size: 1.2rem;
+  }
+  
+  .timelineContent {
+    padding: 1.5rem;
+    margin: 0 1rem;
+  }
+  
+  .timelineTitle {
+    font-size: 1.2rem;
+  }
+  
+  .timelineDescription {
+    font-size: 0.9rem;
+  }
+  
+  .philosophyContainer {
+    padding: 2rem;
+  }
+  
+  .philosophyContent {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .achievements {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .achievementCard {
+    padding: 1.5rem;
+  }
+  
+  .achievementMetric {
+    font-size: 2.5rem;
+  }
+  
+  .cta {
+    padding: 3rem 1.5rem;
+  }
+  
+  .cta h3 {
+    font-size: 2rem;
+  }
+  
+  .cta p {
+    font-size: 1rem;
+  }
+
+  .experienceGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .experienceCard {
+    padding: 1.5rem;
+  }
+
+  .experienceContainer h3 {
+    font-size: 1.75rem;
+  }
+
+  .experienceHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .experienceIcon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+
+  .experienceTitle {
+    font-size: 1.1rem;
+  }
+
+  .experienceAchievements {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .journey {
+    padding: 3rem 0;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .timelineItem {
+    margin-left: 20px;
+  }
+  
+  .timelineIcon {
+    left: -40px;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .icon {
+    font-size: 1rem;
+  }
+  
+  .timelineContent {
+    margin: 0 0.5rem;
+    padding: 1rem;
+    /* Improve touch interaction */
+    min-height: 44px;
+  }
+  
+  .timelineTitle {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .timelineRole {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .timelineDescription {
+    font-size: 0.85rem;
+    text-align: left;
+  }
+  
+  .philosophyContainer {
+    padding: 1.5rem;
+  }
+  
+  .philosophyItem {
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .achievements {
+    grid-template-columns: 1fr;
+  }
+  
+  .achievementMetric {
+    font-size: 2rem;
+  }
+  
+  .cta {
+    padding: 2rem 1rem;
+  }
+  
+  .cta h3 {
+    font-size: 1.5rem;
+  }
+
+  .experienceGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .experienceCard {
+    padding: 1rem;
+  }
+
+  .experienceContainer h3 {
+    font-size: 1.5rem;
+  }
+
+  .experienceHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .experienceIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .experienceTitle {
+    font-size: 1rem;
+  }
+
+  .experienceCompany {
+    font-size: 0.9rem;
+  }
+
+  .experiencePeriod {
+    font-size: 0.8rem;
+  }
+
+  .experienceDescription p {
+    font-size: 0.85rem;
+  }
+
+  .experienceAchievements {
+    padding: 0.75rem;
+  }
+
+  .experienceAchievements h6 {
+    font-size: 0.9rem;
+  }
+
+  .experienceAchievements li {
+    font-size: 0.8rem;
+  }
+  
+  .ctaButton {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    min-height: 44px;
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 360px) {
+  .journey {
+    padding: 2.5rem 0;
+  }
+  
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+  
+  .sectionSubtitle {
+    font-size: 0.9rem;
+  }
+  
+  .timelineContent {
+    margin: 0 0.25rem;
+    padding: 0.75rem;
+  }
+  
+  .timelineTitle {
+    font-size: 1rem;
+  }
+  
+  .timelineRole {
+    font-size: 0.85rem;
+  }
+  
+  .timelineDescription {
+    font-size: 0.8rem;
+  }
+  
+  .philosophyContainer {
+    padding: 1rem;
+  }
+  
+  .philosophyItem {
+    padding: 0.75rem;
+  }
+  
+  .achievementCard {
+    padding: 1rem;
+  }
+  
+  .achievementMetric {
+    font-size: 1.8rem;
+  }
+  
+  .cta {
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .cta h3 {
+    font-size: 1.3rem;
+  }
+  
+  .cta p {
+    font-size: 0.9rem;
+  }
+  
+  .ctaButton {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+} 

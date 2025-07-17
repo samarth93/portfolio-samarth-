@@ -1,0 +1,268 @@
+.adminPanel {
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.sidebar {
+  width: 280px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.sidebarHeader {
+  padding: 30px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebarHeader h2 {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.nav {
+  flex: 1;
+  padding: 20px 0;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  padding: 15px 20px;
+  border: none;
+  background: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  margin: 2px 0;
+}
+
+.navItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.navItem.active {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.navItem .icon {
+  font-size: 1.2rem;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.sidebarFooter {
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.logoutButton {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  padding: 15px 20px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.logoutButton:hover {
+  background: rgba(255, 107, 107, 0.2);
+  color: white;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.dashboardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.welcomeCard {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 30px;
+  color: white;
+  text-align: center;
+}
+
+.welcomeCard h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.welcomeCard p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.statCard {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.statCard h3 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #ff6b6b;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.statCard p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 20px 30px;
+  color: white;
+}
+
+.sectionHeader h2 {
+  font-size: 1.8rem;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.addButton {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.addButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+.placeholder {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 60px;
+  text-align: center;
+  color: white;
+  opacity: 0.7;
+}
+
+.placeholder p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .adminPanel {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: auto;
+    flex-direction: row;
+    z-index: 1000;
+  }
+  
+  .sidebarHeader {
+    display: none;
+  }
+  
+  .nav {
+    display: flex;
+    flex: 1;
+    padding: 10px 0;
+  }
+  
+  .navItem {
+    flex: 1;
+    padding: 10px 5px;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 0.8rem;
+  }
+  
+  .navItem .icon {
+    font-size: 1rem;
+  }
+  
+  .sidebarFooter {
+    padding: 10px;
+  }
+  
+  .logoutButton {
+    padding: 10px;
+    flex-direction: column;
+    font-size: 0.8rem;
+  }
+  
+  .mainContent {
+    padding: 20px;
+    padding-bottom: 100px;
+  }
+} 

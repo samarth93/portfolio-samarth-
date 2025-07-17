@@ -80,15 +80,7 @@ h2 {
   margin-bottom: 2.5rem;
 }
 
-h2::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  width: 80px;
-  height: 4px;
-  background: var(--primary-color);
-}
+/* Removed global h2 underlines */
 
 h3 {
   font-size: 1.75rem;
@@ -181,9 +173,61 @@ section {
   }
 }
 
-/* Optimize scrolling performance */
+/* Mobile Optimization and Touch Interactions */
 * {
   -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: rgba(59, 130, 246, 0.3);
+  -webkit-touch-callout: none;
+}
+
+/* Better touch targets for interactive elements */
+button, a, input, textarea, select {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Improve text selection on mobile */
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: inherit;
+}
+
+::-moz-selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: inherit;
+}
+
+/* Smooth scrolling with improved performance */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Touch-friendly focus styles */
+button:focus, 
+a:focus, 
+input:focus, 
+textarea:focus, 
+select:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Hide focus outline on mouse interactions but keep for keyboard */
+.mouse-user button:focus,
+.mouse-user a:focus,
+.mouse-user input:focus,
+.mouse-user textarea:focus,
+.mouse-user select:focus {
+  outline: none;
+}
+
+/* Better mobile typography rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Reduce motion for users who prefer it */
@@ -201,25 +245,192 @@ section {
 
 /* Responsive design */
 @media (max-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+  
+  body {
+    line-height: 1.5;
+  }
+  
   h1 {
     font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
   }
+  
   h2 {
     font-size: 2rem;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
   }
+  
+  h3 {
+    font-size: 1.5rem;
+    line-height: 1.4;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
   section {
-    padding: 3rem 1.5rem;
+    padding: 3rem 1rem;
+  }
+  
+  .btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+    min-height: 44px;
+    min-width: 44px;
+    /* Improve touch interaction */
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .grid {
+    gap: 1.5rem;
+  }
+  
+  /* Optimize images for mobile */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Better scroll behavior on mobile */
+  body {
+    overscroll-behavior: contain;
   }
 }
 
 @media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+  
+  body {
+    line-height: 1.4;
+  }
+  
   h1 {
     font-size: 2rem;
+    line-height: 1.1;
+    margin-bottom: 0.8rem;
   }
+  
   h2 {
     font-size: 1.75rem;
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
   }
+  
+  h3 {
+    font-size: 1.3rem;
+    line-height: 1.3;
+  }
+  
+  .container {
+    padding: 0 0.75rem;
+  }
+  
   section {
-    padding: 2rem 1rem;
+    padding: 2.5rem 0.75rem;
+  }
+  
+  .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .grid {
+    gap: 1rem;
+  }
+  
+  p {
+    margin-bottom: 0.8rem;
+  }
+}
+
+@media (max-width: 380px) {
+  html {
+    font-size: 13px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+  }
+  
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  section {
+    padding: 2rem 0.5rem;
+  }
+  
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  /* Improve spacing for very small screens */
+  p {
+    margin-bottom: 0.75rem;
+    text-align: left;
+  }
+  
+  /* Better line heights for readability */
+  body {
+    line-height: 1.6;
+  }
+}
+
+/* Ultra-small screens (Galaxy Fold, etc.) */
+@media (max-width: 320px) {
+  html {
+    font-size: 12px;
+  }
+  
+  h1 {
+    font-size: 1.6rem;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+  }
+  
+  h3 {
+    font-size: 1.1rem;
+  }
+  
+  .container {
+    padding: 0 0.25rem;
+  }
+  
+  section {
+    padding: 1.5rem 0.25rem;
+  }
+  
+  .btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
   }
 }

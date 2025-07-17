@@ -161,6 +161,7 @@
 .summary p {
   margin-bottom: 1rem;
   line-height: 1.8;
+  text-align: justify;
 }
 
 .educationItem {
@@ -168,6 +169,7 @@
   padding-left: 1.5rem;
   border-left: 3px solid var(--accent-color);
   position: relative;
+  text-align: justify;
 }
 
 .educationItem:last-child {
@@ -193,32 +195,35 @@
 @media (max-width: 992px) {
   .content {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.5rem;
   }
   
   .profileImage {
-    margin-bottom: 2rem;
+    order: -1;
+    margin-bottom: 1.5rem;
   }
   
   .imageContainer {
-    width: 200px;
-    height: 200px;
-  }
-  
-  .profileImg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 220px;
+    height: 220px;
   }
 }
 
 @media (max-width: 768px) {
   .about {
-    padding: 4rem 1.5rem;
+    padding: 3rem 1rem;
   }
   
   .sectionTitle {
     margin-bottom: 2rem;
+  }
+  
+  .content {
+    gap: 2rem;
+  }
+  
+  .profileImage {
+    margin-bottom: 1rem;
   }
   
   .imageContainer {
@@ -226,7 +231,107 @@
     height: 180px;
   }
   
+  .summary h3, .education h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .summary p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+    text-align: justify;
+  }
+  
   .educationItem {
     padding-left: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .educationItem h4 {
+    font-size: 1.1rem;
+  }
+  
+  .institution {
+    font-size: 0.9rem;
+  }
+  
+  .period {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: 2.5rem 0.75rem;
+  }
+  
+  .content {
+    gap: 1.5rem;
+  }
+  
+  .imageContainer {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .summary h3, .education h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .summary p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    text-align: justify;
+  }
+  
+  .educationItem {
+    padding-left: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .educationItem h4 {
+    font-size: 1rem;
+  }
+  
+  .institution {
+    font-size: 0.85rem;
+  }
+  
+  .period {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .about {
+    padding: 2rem 0.5rem;
+  }
+  
+  .imageContainer {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .summary h3, .education h3 {
+    font-size: 1rem;
+  }
+  
+  .summary p {
+    font-size: 0.8rem;
+    text-align: justify;
+  }
+  
+  .educationItem h4 {
+    font-size: 0.95rem;
+  }
+  
+  .institution {
+    font-size: 0.8rem;
+  }
+  
+  .period {
+    font-size: 0.75rem;
   }
 } 
