@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import styles from '../styles/Contact.module.css';
+import { API_ENDPOINTS } from '../lib/api';
 
 interface ContactProps {
   email: string;
@@ -14,9 +15,12 @@ const Contact: React.FC<ContactProps> = ({ email, github, linkedin }) => {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
+    subject: '',
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,18 +51,41 @@ const Contact: React.FC<ContactProps> = ({ email, github, linkedin }) => {
     setFormState(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulating form submission
-    setTimeout(() => {
-      setSubmitted(true);
-      setFormState({ name: '', email: '', message: '' });
-      
-      // Reset form after 3 seconds
-      setTimeout(() => {
-        setSubmitted(false);
-      }, 3000);
-    }, 1000);
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    try {
+      const response = await fetch(API_ENDPOINTS.CONTACTS, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formState),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitted(true);
+        setSubmitMessage(data.message);
+        setFormState({ name: '', email: '', subject: '', message: '' });
+        
+        // Reset success state after 5 seconds
+        setTimeout(() => {
+          setSubmitted(false);
+          setSubmitMessage('');
+        }, 5000);
+      } else {
+        setSubmitMessage(data.message || 'Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitMessage('Failed to send message. Please check your internet connection and try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -167,6 +194,18 @@ const Contact: React.FC<ContactProps> = ({ email, github, linkedin }) => {
               </div>
               
               <div className={styles.formGroup}>
+                <label htmlFor="subject">Subject</label>
+                <input 
+                  type="text" 
+                  id="subject" 
+                  name="subject" 
+                  value={formState.subject}
+                  onChange={handleChange}
+                  placeholder="What would you like to discuss?"
+                />
+              </div>
+              
+              <div className={styles.formGroup}>
                 <label htmlFor="message">Message</label>
                 <textarea 
                   id="message" 
@@ -178,8 +217,10 @@ const Contact: React.FC<ContactProps> = ({ email, github, linkedin }) => {
                 ></textarea>
               </div>
               
-              <button type="submit" className={styles.submitBtn} disabled={submitted}>
-                {submitted ? (
+              <button type="submit" className={styles.submitBtn} disabled={isSubmitting || submitted}>
+                {isSubmitting ? (
+                  'Sending...'
+                ) : submitted ? (
                   <span className={styles.success}>
                     <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none">
                       <polyline points="20 6 9 17 4 12"></polyline>
@@ -188,6 +229,12 @@ const Contact: React.FC<ContactProps> = ({ email, github, linkedin }) => {
                   </span>
                 ) : 'Send Message'}
               </button>
+              
+              {submitMessage && (
+                <div className={`${styles.statusMessage} ${submitted ? styles.success : styles.error}`}>
+                  {submitMessage}
+                </div>
+              )}
             </form>
           </div>
         </div>

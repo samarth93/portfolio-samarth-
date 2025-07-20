@@ -33,7 +33,8 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
       } else {
         setError(data.message || 'Authentication failed');
       }
-    } catch (err) {
+    } catch (error) {
+      console.error('Login error:', error);
       setError('Connection error. Please ensure the backend is running.');
     } finally {
       setLoading(false);

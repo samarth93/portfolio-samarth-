@@ -36,9 +36,9 @@ public class InsightService {
     public Optional<Insight> updateInsight(String id, Insight updatedInsight) {
         return insightRepository.findById(id)
                 .map(existingInsight -> {
-                    updatedInsight.setId(id);
-                    updatedInsight.setCreatedAt(existingInsight.getCreatedAt());
-                    updatedInsight.updateTimestamp();
+            updatedInsight.setId(id);
+            updatedInsight.setCreatedAt(existingInsight.getCreatedAt());
+            updatedInsight.updateTimestamp();
                     return insightRepository.save(updatedInsight);
                 });
     }
@@ -65,8 +65,8 @@ public class InsightService {
     public Optional<Insight> publishInsight(String id) {
         return insightRepository.findById(id)
                 .map(insight -> {
-                    insight.setPublished(true);
-                    insight.updateTimestamp();
+            insight.setPublished(true);
+            insight.updateTimestamp();
                     return insightRepository.save(insight);
                 });
     }

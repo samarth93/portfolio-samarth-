@@ -29,9 +29,9 @@ public class ExperienceService {
     public Optional<Experience> updateExperience(String id, Experience updatedExperience) {
         return experienceRepository.findById(id)
                 .map(existingExperience -> {
-                    updatedExperience.setId(id);
-                    updatedExperience.setCreatedAt(existingExperience.getCreatedAt());
-                    updatedExperience.updateTimestamp();
+            updatedExperience.setId(id);
+            updatedExperience.setCreatedAt(existingExperience.getCreatedAt());
+            updatedExperience.updateTimestamp();
                     return experienceRepository.save(updatedExperience);
                 });
     }

@@ -64,10 +64,12 @@ const Journey = () => {
         }
       } catch (err) {
         console.error('Error fetching experiences:', err);
-        if (err.name === 'AbortError') {
+        if (err instanceof Error && err.name === 'AbortError') {
           setError('Request timed out - backend might be starting up');
-        } else {
+        } else if (err instanceof Error) {
           setError(`Failed to load experiences: ${err.message}`);
+        } else {
+          setError('Failed to load experiences: Unknown error occurred');
         }
       } finally {
         setLoading(false);
@@ -105,7 +107,7 @@ const Journey = () => {
   }, []);
 
   return (
-    <section id="about" className={styles.journey} ref={sectionRef}>
+    <section id="journey" className={styles.journey} ref={sectionRef}>
       <div className="container">
         <div className={styles.header}>
           <h2 className={styles.sectionTitle}>Professional Experience</h2>

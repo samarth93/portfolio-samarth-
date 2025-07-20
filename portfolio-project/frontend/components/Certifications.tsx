@@ -250,11 +250,11 @@ const Certifications: React.FC<CertificationsProps> = ({ certifications }) => {
           <div className={styles.ctaContent}>
             <h3 className={styles.ctaTitle}>Continuous Learning Journey</h3>
             <p className={styles.ctaDescription}>
-              I'm committed to staying current with industry trends and continuously expanding my expertise through ongoing certification and training programs.
+              I&apos;m committed to staying current with industry trends and continuously expanding my expertise through ongoing certification and training programs.
             </p>
             <div className={styles.ctaButtons}>
               <a
-                href="https://www.credly.com/users/samarth-pal"
+                href="https://www.credly.com/users/samarth-pal.8fb52d79/badges"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.ctaButton}

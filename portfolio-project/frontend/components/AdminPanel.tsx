@@ -5,6 +5,7 @@ import styles from '../styles/AdminPanel.module.css';
 import ExperienceManager from './ExperienceManager';
 import ProjectManager from './ProjectManager';
 import InsightManager from './InsightManager';
+import ContactManager from './ContactManager';
 import { API_ENDPOINTS, createAuthHeaders } from '../lib/api';
 
 interface AdminPanelProps {
@@ -18,7 +19,9 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ token, onLogout }) => {
     experiences: 0,
     projects: 0,
     insights: 0,
-    publishedInsights: 0
+    publishedInsights: 0,
+    contacts: 0,
+    unreadContacts: 0
   });
 
   const handleLogout = async () => {
@@ -49,11 +52,26 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ token, onLogout }) => {
           insightsRes.json()
         ]);
 
+        // Fetch contact stats separately to handle potential errors
+        let contactStats = { totalContacts: 0, unreadContacts: 0 };
+        try {
+          const contactsRes = await fetch(API_ENDPOINTS.CONTACTS_STATS, { 
+            headers: createAuthHeaders(token) 
+          });
+          if (contactsRes.ok) {
+            contactStats = await contactsRes.json();
+          }
+        } catch (contactError) {
+          console.error('Error fetching contact stats:', contactError);
+        }
+
         setStats({
           experiences: experiences.length,
           projects: projects.length,
           insights: insights.length,
-          publishedInsights: insights.filter((insight: any) => insight.published).length
+          publishedInsights: insights.filter((insight: { published: boolean }) => insight.published).length,
+          contacts: contactStats.totalContacts || 0,
+          unreadContacts: contactStats.unreadContacts || 0
         });
       } catch (error) {
         console.error('Error fetching stats:', error);
@@ -61,13 +79,14 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ token, onLogout }) => {
     };
 
     fetchStats();
-  }, []);
+  }, [token]);
 
   const tabs = [
     { id: 'dashboard', label: 'Dashboard', icon: '📊' },
     { id: 'experience', label: 'Experience', icon: '💼' },
     { id: 'projects', label: 'Projects', icon: '🚀' },
     { id: 'insights', label: 'Insights', icon: '✍️' },
+    { id: 'contacts', label: 'Messages', icon: '💬' },
   ];
 
   const renderContent = () => {
@@ -96,6 +115,14 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ token, onLogout }) => {
                 <h3>{stats.publishedInsights}</h3>
                 <p>Published</p>
               </div>
+              <div className={styles.statCard}>
+                <h3>{stats.contacts}</h3>
+                <p>Total Messages</p>
+              </div>
+              <div className={styles.statCard}>
+                <h3>{stats.unreadContacts}</h3>
+                <p>Unread Messages</p>
+              </div>
             </div>
           </div>
         );
@@ -105,6 +132,8 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ token, onLogout }) => {
         return <ProjectManager token={token} />;
       case 'insights':
         return <InsightManager token={token} />;
+      case 'contacts':
+        return <ContactManager token={token} />;
       default:
         return null;
     }

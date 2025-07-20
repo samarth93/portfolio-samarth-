@@ -53,7 +53,7 @@ const Footer = () => {
               <ul>
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
+                <li><a href="#core-domains">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
               </ul>
             </div>
@@ -61,7 +61,7 @@ const Footer = () => {
             <div className={styles.linksColumn}>
               <h4>More</h4>
               <ul>
-                <li><a href="#experience">Experience</a></li>
+                <li><a href="#journey">Experience</a></li>
                 <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#contact">Contact</a></li>
               </ul>

@@ -29,9 +29,9 @@ public class ProjectService {
     public Optional<Project> updateProject(String id, Project updatedProject) {
         return projectRepository.findById(id)
                 .map(existingProject -> {
-                    updatedProject.setId(id);
-                    updatedProject.setCreatedAt(existingProject.getCreatedAt());
-                    updatedProject.updateTimestamp();
+            updatedProject.setId(id);
+            updatedProject.setCreatedAt(existingProject.getCreatedAt());
+            updatedProject.updateTimestamp();
                     return projectRepository.save(updatedProject);
                 });
     }
