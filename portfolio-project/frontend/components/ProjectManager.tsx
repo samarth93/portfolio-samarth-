@@ -60,7 +60,7 @@ const ProjectManager: React.FC<ProjectManagerProps> = ({ token }) => {
   const fetchProjects = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:8081/api/projects');
+      const response = await fetch('http://localhost:8080/api/projects');
       if (response.ok) {
         const data = await response.json();
         setProjects(data);
@@ -100,8 +100,8 @@ const ProjectManager: React.FC<ProjectManagerProps> = ({ token }) => {
       };
 
       const url = editingProject 
-        ? `http://localhost:8081/api/projects/${editingProject.id}`
-        : 'http://localhost:8081/api/projects';
+        ? `http://localhost:8080/api/projects/${editingProject.id}`
+        : 'http://localhost:8080/api/projects';
       
       const method = editingProject ? 'PUT' : 'POST';
 
@@ -132,7 +132,7 @@ const ProjectManager: React.FC<ProjectManagerProps> = ({ token }) => {
     if (!confirm('Are you sure you want to delete this project?')) return;
 
     try {
-      const response = await fetch(`http://localhost:8081/api/projects/${id}`, {
+      const response = await fetch(`http://localhost:8080/api/projects/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

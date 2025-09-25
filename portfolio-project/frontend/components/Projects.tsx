@@ -28,15 +28,15 @@ const Projects: React.FC = () => {
   const transformBackendProjects = (backendProjects: BackendProject[]) => {
     return backendProjects.map((project, index) => ({
       id: project.id.toString(),
-      title: project.name,
+      title: project.name || 'Untitled Project',
       category: project.category || 'Development',
-      description: project.description,
-      shortDescription: project.description.length > 100 
+      description: project.description || 'No description available',
+      shortDescription: (project.description && project.description.length > 100)
         ? project.description.substring(0, 100) + '...' 
-        : project.description,
+        : (project.description || 'No description available'),
       technologies: Array.isArray(project.techStack) 
         ? project.techStack.join(', ') 
-        : project.techStack || '',
+        : (typeof project.techStack === 'string' ? project.techStack : ''),
       githubLink: project.githubLink,
       features: Array.isArray(project.keyFeatures) && project.keyFeatures.length > 0
         ? project.keyFeatures
@@ -54,7 +54,7 @@ const Projects: React.FC = () => {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
         
-        const response = await fetch('http://127.0.0.1:8081/api/projects', {
+        const response = await fetch('http://127.0.0.1:8080/api/projects', {
           signal: controller.signal,
           headers: {
             'Content-Type': 'application/json',
@@ -73,10 +73,14 @@ const Projects: React.FC = () => {
         }
       } catch (err) {
         console.error('Error fetching projects:', err);
-        if (err.name === 'AbortError') {
-          setError('Request timed out - backend might be starting up');
+        if (err instanceof Error) {
+          if (err.name === 'AbortError') {
+            setError('Request timed out - backend might be starting up');
+          } else {
+            setError(`Failed to load projects: ${err.message}`);
+          }
         } else {
-          setError(`Failed to load projects: ${err.message}`);
+          setError('Failed to load projects: Unknown error occurred');
         }
       } finally {
         setLoading(false);
@@ -97,7 +101,9 @@ const Projects: React.FC = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsVisible(true);
-            entry.target.classList.add(styles.visible);
+            if (styles.visible) {
+              entry.target.classList.add(styles.visible);
+            }
           }
         });
       },
@@ -224,7 +230,7 @@ const Projects: React.FC = () => {
           </div>
         )}
 
-        {!loading && enhancedProjects.length > 0 && (
+        {!loading && enhancedProjects.length > 0 && activeProjectData && (
         <div className={styles.content}>
           {/* Project Navigation */}
           <div className={styles.projectNav}>
@@ -289,7 +295,7 @@ const Projects: React.FC = () => {
               <div className={styles.technologiesSection}>
                 <h4>Technologies Used</h4>
                 <div className={styles.techTags}>
-                  {activeProjectData.technologies.split(',').map((tech, index) => (
+                  {activeProjectData.technologies && activeProjectData.technologies.split(',').map((tech, index) => (
                     <span key={index} className={styles.techTag}>
                       {tech.trim()}
                     </span>
