@@ -85,17 +85,20 @@ const Insights = () => {
     const fetchInsights = async () => {
       try {
         setLoading(true);
+        console.log('Fetching insights from:', API_ENDPOINTS.INSIGHTS);
         const response = await fetch(API_ENDPOINTS.INSIGHTS);
+        console.log('Response status:', response.status);
         if (response.ok) {
           const data = await response.json();
+          console.log('Insights data:', data);
           setBackendInsights(data);
           setError(null);
         } else {
-          throw new Error('Failed to fetch insights');
+          throw new Error(`HTTP ${response.status}: Failed to fetch insights`);
       }
       } catch (err) {
         console.error('Error fetching insights:', err);
-        setError('Failed to load insights from backend');
+        setError(err instanceof Error ? err.message : 'Failed to load insights from backend');
       } finally {
         setLoading(false);
       }
