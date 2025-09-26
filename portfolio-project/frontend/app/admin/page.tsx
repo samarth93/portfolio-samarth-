@@ -21,7 +21,7 @@ const AdminPage: React.FC = () => {
 
   const validateToken = async (tokenToValidate: string) => {
     try {
-      const response = await fetch('http://localhost:8080/api/auth/validate', {
+      const response = await fetch('/api/auth/validate', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

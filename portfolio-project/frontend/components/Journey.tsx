@@ -45,8 +45,8 @@ const Journey = () => {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
         
-        const response = await fetch('http://127.0.0.1:8080/api/experiences', {
-          signal: controller.signal,
+        const response = await fetch('/api/experiences', {
+          method: 'GET',
           headers: {
             'Content-Type': 'application/json',
           },

@@ -60,7 +60,7 @@ const InsightManager: React.FC<InsightManagerProps> = ({ token }) => {
   const fetchInsights = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:8080/api/insights/all', {
+      const response = await fetch('/api/insights/all', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -102,8 +102,8 @@ const InsightManager: React.FC<InsightManagerProps> = ({ token }) => {
       };
 
       const url = editingInsight 
-        ? `http://localhost:8080/api/insights/${editingInsight.id}`
-        : 'http://localhost:8080/api/insights';
+        ? `/api/insights/${editingInsight.id}`
+        : '/api/insights';
       
       const method = editingInsight ? 'PUT' : 'POST';
 
@@ -134,7 +134,7 @@ const InsightManager: React.FC<InsightManagerProps> = ({ token }) => {
     if (!confirm('Are you sure you want to delete this insight?')) return;
 
     try {
-      const response = await fetch(`http://localhost:8080/api/insights/${id}`, {
+      const response = await fetch(`/api/insights/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -156,7 +156,7 @@ const InsightManager: React.FC<InsightManagerProps> = ({ token }) => {
   // Toggle publish status
   const togglePublish = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/insights/${id}/publish`, {
+      const response = await fetch(`/api/insights/${id}/publish`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`

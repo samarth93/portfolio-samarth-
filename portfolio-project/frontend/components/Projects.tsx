@@ -54,7 +54,7 @@ const Projects: React.FC = () => {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
         
-        const response = await fetch('http://127.0.0.1:8080/api/projects', {
+        const response = await fetch('/api/projects', {
           signal: controller.signal,
           headers: {
             'Content-Type': 'application/json',
