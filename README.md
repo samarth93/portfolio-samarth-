@@ -98,10 +98,6 @@ npm run dev
 - **Public Portfolio**: http://localhost:3000
 - **Admin Dashboard**: http://localhost:3000/admin
 
-### **Admin Access**
-- **Username**: `Bhou`
-- **Password**: `Billu#1234`
-
 ## 📱 **Application Structure**
 
 ### **Frontend Pages**
