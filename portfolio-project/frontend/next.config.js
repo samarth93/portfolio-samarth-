@@ -7,10 +7,15 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   async rewrites() {
+    const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL;
+    const destination = apiBase
+      ? `${apiBase}/:path*`
+      : 'http://localhost:8080/api/:path*';
+
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:8080/api/:path*',
+        destination,
       },
     ];
   },
