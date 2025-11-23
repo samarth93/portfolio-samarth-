@@ -197,6 +197,58 @@ npm run dev
 3. Token validation for protected routes
 4. Automatic logout on token expiry
 
+## 🚀 **Production Deployment (Render)**
+
+### **Backend Deployment**
+
+1. **Create Web Service** on Render
+   - Runtime: Docker
+   - Repository: Your GitHub repository
+   - Root Directory: `backend`
+
+2. **Set Environment Variables** in Render Dashboard:
+   ```
+   MONGODB_URI=your-mongodb-atlas-connection-string
+   MONGODB_DATABASE=portfolio
+   ADMIN_USERNAME=your-admin-username
+   ADMIN_PASSWORD=your-secure-password
+   ALLOWED_ORIGINS=https://your-frontend-url.onrender.com
+   PORT=8080
+   LOGGING_LEVEL=INFO
+   ```
+
+3. **Important Notes**:
+   - Get MongoDB URI from MongoDB Atlas (Database → Connect → Drivers)
+   - Use a strong password for `ADMIN_PASSWORD`
+   - `ALLOWED_ORIGINS` must include your frontend URL
+   - See `backend/env.example.txt` for detailed configuration
+
+### **Frontend Deployment**
+
+1. **Create Static Site** or **Web Service** on Render
+   - Build Command: `cd portfolio-project/frontend && npm install && npm run build`
+   - Start Command: `cd portfolio-project/frontend && npm start`
+   - Root Directory: `/`
+
+2. **Set Environment Variables**:
+   ```
+   NEXT_PUBLIC_API_BASE_URL=https://your-backend-api.onrender.com/api
+   ```
+
+3. **Important Notes**:
+   - The API URL should point to your backend service
+   - No trailing slash in the API URL
+   - See `portfolio-project/frontend/env.example.txt` for details
+
+### **Security Best Practices**
+
+⚠️ **IMPORTANT**: Never commit sensitive credentials to Git
+- ✅ All credentials are now environment variables
+- ✅ MongoDB credentials removed from `application.properties`
+- ✅ Admin credentials loaded from environment
+- ✅ CORS origins configurable per environment
+- ⚠️ Make sure to update `.gitignore` to exclude `.env` files
+
 ## 🌟 **Features Showcase**
 
 - **📊 Admin Dashboard** - Complete content management system

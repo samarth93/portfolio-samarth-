@@ -1,7 +1,7 @@
 # Multi-stage Dockerfile: build with Maven image, run with lightweight OpenJDK
 
-# Build stage: use an official Maven image with JDK 21 to compile and package the app
-FROM maven:3.9.4-eclipse-temurin-21 AS build
+# Build stage: use an official Maven image with JDK 17 to compile and package the app
+FROM maven:3.9.4-eclipse-temurin-17 AS build
 WORKDIR /workspace
 
 # Copy pom first and fetch dependencies (speeds up rebuilds)
@@ -12,8 +12,8 @@ RUN mvn -B -DskipTests dependency:go-offline
 COPY src ./src
 RUN mvn -B -DskipTests clean package
 
-# Runtime stage: lightweight OpenJDK
-FROM openjdk:21-jdk-slim
+# Runtime stage: lightweight OpenJDK 17
+FROM eclipse-temurin:17-jre-jammy
 WORKDIR /app
 
 # Copy the packaged jar from the build stage (wildcard matches the artifact name)
