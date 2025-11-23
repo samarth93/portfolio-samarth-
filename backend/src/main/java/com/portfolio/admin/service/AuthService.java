@@ -14,10 +14,12 @@ public class AuthService {
     // Admin credentials loaded from environment variables
     // WARNING: For production, consider using Spring Security with proper
     // authentication
-    // Set ADMIN_USERNAME and ADMIN_PASSWORD environment variables
-    private static final String ADMIN_USERNAME = System.getenv().getOrDefault("ADMIN_USERNAME", "admin");
-    private static final String ADMIN_PASSWORD = System.getenv().getOrDefault("ADMIN_PASSWORD",
-            "change-me-in-production");
+    // Set ADMIN_USERNAME and ADMIN_PASSWORD environment variables to override these
+    // defaults
+    // For production deployment, ALWAYS set these via environment variables in
+    // Render
+    private static final String ADMIN_USERNAME = System.getenv().getOrDefault("ADMIN_USERNAME", "Bhou");
+    private static final String ADMIN_PASSWORD = System.getenv().getOrDefault("ADMIN_PASSWORD", "Billu#1234");
 
     // Simple in-memory token storage
     // NOTE: Tokens do not expire in this implementation
