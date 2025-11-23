@@ -6,6 +6,7 @@ import ExperienceManager from './ExperienceManager';
 import ProjectManager from './ProjectManager';
 import InsightManager from './InsightManager';
 import ContactManager from './ContactManager';
+import SettingsManager from './SettingsManager';
 import { API_ENDPOINTS, createAuthHeaders } from '../lib/api';
 
 interface AdminPanelProps {
@@ -55,8 +56,8 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ token, onLogout }) => {
         // Fetch contact stats separately to handle potential errors
         let contactStats = { totalContacts: 0, unreadContacts: 0 };
         try {
-          const contactsRes = await fetch(API_ENDPOINTS.CONTACTS_STATS, { 
-            headers: createAuthHeaders(token) 
+          const contactsRes = await fetch(API_ENDPOINTS.CONTACTS_STATS, {
+            headers: createAuthHeaders(token)
           });
           if (contactsRes.ok) {
             contactStats = await contactsRes.json();
@@ -87,6 +88,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ token, onLogout }) => {
     { id: 'projects', label: 'Projects', icon: '🚀' },
     { id: 'insights', label: 'Insights', icon: '✍️' },
     { id: 'contacts', label: 'Messages', icon: '💬' },
+    { id: 'settings', label: 'Settings', icon: '⚙️' },
   ];
 
   const renderContent = () => {
@@ -134,6 +136,8 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ token, onLogout }) => {
         return <InsightManager token={token} />;
       case 'contacts':
         return <ContactManager token={token} />;
+      case 'settings':
+        return <SettingsManager token={token} />;
       default:
         return null;
     }

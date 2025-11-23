@@ -18,20 +18,23 @@ export const API_ENDPOINTS = {
   LOGIN: `${API_CONFIG.BASE_URL}/auth/login`,
   LOGOUT: `${API_CONFIG.BASE_URL}/auth/logout`,
   VALIDATE: `${API_CONFIG.BASE_URL}/auth/validate`,
-  
+
   // Experiences
   EXPERIENCES: `${API_CONFIG.BASE_URL}/experiences`,
-  
+
   // Projects
   PROJECTS: `${API_CONFIG.BASE_URL}/projects`,
-  
+
   // Insights
   INSIGHTS: `${API_CONFIG.BASE_URL}/insights`,
   INSIGHTS_ALL: `${API_CONFIG.BASE_URL}/insights/all`,
-  
+
   // Contacts (using auth endpoints as workaround)
   CONTACTS: `${API_CONFIG.BASE_URL}/auth/contacts`,
   CONTACTS_UNREAD: `${API_CONFIG.BASE_URL}/auth/contacts/unread`,
   CONTACTS_STATS: `${API_CONFIG.BASE_URL}/auth/contacts/stats`,
   CONTACTS_SEARCH: `${API_CONFIG.BASE_URL}/auth/contacts/search`,
+
+  // Settings
+  SETTINGS: `${API_CONFIG.BASE_URL}/settings`,
 }; 

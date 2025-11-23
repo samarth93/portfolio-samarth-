@@ -250,13 +250,16 @@ const Community = () => {
           <div className={styles.ctaSection}>
             <h3 className={styles.ctaTitle}>Let's Build Something Together</h3>
             <p className={styles.ctaDescription}>
-              Interested in collaborating, organizing a workshop, or discussing community initiatives? 
+              Interested in collaborating, organizing a workshop, or discussing community initiatives?
               I'm always excited to connect with fellow developers and contribute to the tech community.
             </p>
             <div className={styles.ctaButtons}>
               <button
                 className={styles.ctaButton}
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => {
+                  // Navigate to home page first
+                  window.location.href = '/#contact';
+                }}
               >
                 Get in Touch
               </button>
